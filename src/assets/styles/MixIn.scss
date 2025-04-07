@@ -1,0 +1,34 @@
+@mixin tablet {
+  @media screen and (max-width: $tabletWidth) {
+    @content;
+  }
+}
+
+@mixin pad {
+  @media screen and (max-width: $padWidth) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media screen and (max-width: $phoneWidth) {
+    @content;
+  }
+}
+
+@mixin hide-scrollbar {
+  // 隱藏瀏覽器預設的滾動條
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // IE, Edge
+  & {
+    -ms-overflow-style: none;
+  }
+
+  // Firefox
+  & {
+    scrollbar-width: none;
+  }
+}

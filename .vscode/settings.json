@@ -1,0 +1,17 @@
+{
+  "editor.formatOnSave": true, // 開啟自動格式化
+  "eslint.format.enable": true, // 開啟 ESLint 格式化
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // 使用 Prettier 格式化
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // 確保 JavaScript 使用 Prettier
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // 確保 TypeScript 使用 Prettier
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // 確保 TypeScript React 使用 Prettier
+  }
+}

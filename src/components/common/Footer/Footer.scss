@@ -1,0 +1,43 @@
+.footer {
+  &__wrapper {
+    list-style: none;
+    height: 76.61px;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.5;
+    padding: 8px 28px;
+
+    @include pad {
+      justify-content: space-around;
+      flex-flow: column-reverse wrap;
+    }
+
+    @include phone {
+      justify-content: center;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-flow: row nowrap;
+    white-space: pre-wrap;
+
+    @include pad {
+      flex-flow: column wrap;
+      margin: auto;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    font-family: 'Inter', Sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: #5f6858;
+    border: 0;
+    cursor: url('src/assets/images/cursor.png') 2 2, pointer;
+  }
+}
