@@ -14,13 +14,8 @@ const loadPage = (id: string) => {
 
 const RouterList: Array<iRouter> = [
   {
-    path: ROUTES.About,
-    element: loadPage('About'),
-    needLogin: false,
-  },
-  {
-    path: ROUTES.Policy,
-    element: loadPage('Policy'),
+    path: ROUTES.Countdown,
+    element: loadPage('Countdown'),
     needLogin: false,
   },
   {
@@ -28,7 +23,7 @@ const RouterList: Array<iRouter> = [
     element: (
       <Navigate
         replace
-        to={ROUTES.About}
+        to={ROUTES.Countdown}
       />
     ),
     needLogin: true,
@@ -38,7 +33,7 @@ const RouterList: Array<iRouter> = [
     element: (
       <Navigate
         replace
-        to={ROUTES.About}
+        to={ROUTES.Countdown}
       />
     ),
     needLogin: true,

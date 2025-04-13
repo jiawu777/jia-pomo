@@ -1,0 +1,32 @@
+.input {
+  &__wrapper {
+    background-color: $colorWhite;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-flow: column wrap;
+    padding: 10px 10px;
+
+    @include pad {
+      padding: 0px 30px;
+    }
+  }
+
+  &__timer {
+    font-size: 5rem;
+  }
+
+  &__btn {
+    flex-flow: row nowrap;
+  }
+
+  &__currentTask {
+    text-align: center;
+    font-size: 3rem;
+    white-space: pre-wrap;
+    overflow: hidden;
+    font-weight: bold;
+  }
+}

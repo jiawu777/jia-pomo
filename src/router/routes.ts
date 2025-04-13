@@ -1,4 +1,3 @@
 export enum ROUTES {
-  About = '/about',
-  Policy = '/policy',
+  Countdown = '/countdown',
 }
