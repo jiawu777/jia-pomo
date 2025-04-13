@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 type Task = {
   id: number;
-  title: string;
-  totalRound: number;
+  taskName: string | undefined;
+  cycle: number;
   completed: boolean;
 };
 
@@ -22,7 +22,6 @@ const useLocalstorage = () => {
     try {
       const stored = localStorage.getItem('userInfo');
       const initial = stored ? JSON.parse(stored) : defaultUserInfo;
-      // console.log(`getUserInfo:`, initial);
       return initial;
     } catch (error) {
       console.error('Failed to parse userInfo from localStorage:', error);
@@ -34,11 +33,11 @@ const useLocalstorage = () => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
   }, [userInfo]);
 
-  const addNewTask = (task: { title: string; totalRound: number }) => {
+  const addNewTask = (task: { taskName: string; cycle: number }) => {
     const newTask: Task = {
       id: Date.now(),
-      title: task.title,
-      totalRound: task.totalRound,
+      taskName: task.taskName,
+      cycle: task.cycle,
       completed: false,
     };
 
@@ -46,7 +45,6 @@ const useLocalstorage = () => {
       tasks: [...prev.tasks, newTask],
       currentTaskId: newTask.id,
     }));
-    // console.log(`add new task:`, userInfo);
   };
 
   return { userInfo, addNewTask };

@@ -1,62 +1,39 @@
-import { useState, useRef, useEffect } from 'react';
-import { useLocalstorage } from '@/hooks/useLocalStorage';
+import { useInputData } from '@/hooks/useInputData';
+
 import './InputData.scss';
 
 const InputData = () => {
-  const defaultStatus = {
-    totalRound: 1,
-    task: 'Time to focus!',
-  };
-
   const addTaskBtn = 'Add';
-  const intervalTotalRound = useRef(defaultStatus.totalRound);
-  const intervalTaskName = useRef(defaultStatus.task);
-  const { addNewTask } = useLocalstorage();
-
-  const handleTaskInput = (e) => {
-    // prevent default render
-    e.preventDefault();
-
-    const taskName = intervalTaskName.current;
-    const totalRound = Number(intervalTotalRound?.current);
-    console.log(
-      `currentTaskName: ${intervalTaskName.current}; totalRound: ${intervalTotalRound.current}`
-    );
-    const newTask = {
-      id: Date.now(),
-      title: taskName,
-      totalRound: totalRound,
-      completed: false,
-    };
-
-    addNewTask(newTask);
-
-    // reset input
-    intervalTaskName.current = defaultStatus.task;
-    intervalTotalRound.current = defaultStatus.totalRound;
-  };
+  const { taskNameRef, cycleRef, errors, handleSubmit } = useInputData();
 
   return (
     <div className={`input__wrapper`}>
-      <form className="input__form">
+      <form
+        className="input__form"
+        onSubmit={handleSubmit}
+      >
         <input
           required
-          className="input__time"
+          className="input__round"
           type="number"
-          ref={intervalTotalRound}
-          defaultValue={defaultStatus.totalRound}
-          placeholder="Enter time(min)"
+          ref={cycleRef}
+          placeholder="Enter cycle"
+          min={1}
         />
+        {errors.cycle && <span className="input__cycleError">{errors.cycle}</span>}
+
         <input
           required
           className="input__task"
           type="text"
-          ref={intervalTaskName}
+          ref={taskNameRef}
           placeholder="Enter task"
         />
+        {errors.task && <span className="input__taskError">{errors.task}</span>}
+
         <button
+          type="submit"
           className="input__addTaskBtn"
-          onChange={handleTaskInput}
         >
           {addTaskBtn}
         </button>
