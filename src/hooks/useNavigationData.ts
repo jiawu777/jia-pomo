@@ -33,16 +33,6 @@ const useNavigationData = () => {
       title: t('navigation:n5.title'),
       path: '',
     },
-    {
-      id: 'n6',
-      title: t('navigation:n6.title'),
-      path: ROUTES.About,
-    },
-    {
-      id: 'n7',
-      title: t('navigation:n7.title'),
-      path: ROUTES.Policy,
-    },
   ];
   const NavigationIcon = [
     { id: 'n1', img: Imgh1 },

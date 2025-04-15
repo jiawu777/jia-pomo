@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { useLocalstorage } from '@/hooks/useLocalStorage';
+import { useSetAtom } from 'jotai';
+import { addTaskAtom } from '@/atoms/taskAtoms';
 
 interface Errors {
   task?: string;
@@ -10,8 +11,7 @@ const useInputData = () => {
   const taskNameRef = useRef<HTMLInputElement>(null);
   const cycleRef = useRef<HTMLInputElement>(null);
   const [errors, setErrors] = useState<Errors>({});
-  const { addNewTask } = useLocalstorage();
-
+  const addTask = useSetAtom(addTaskAtom);
   const defaultStatus = {
     cycle: 1,
     task: 'Time to focus!',
@@ -44,7 +44,8 @@ const useInputData = () => {
       completed: false,
     };
 
-    addNewTask(newTask);
+    // addNewTask(newTask);
+    addTask(newTask);
 
     // reset value
     if (taskNameRef.current) taskNameRef.current.value = defaultStatus.task;

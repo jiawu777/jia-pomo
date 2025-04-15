@@ -1,5 +1,4 @@
 import { useInputData } from '@/hooks/useInputData';
-
 import './InputData.scss';
 
 const InputData = () => {
