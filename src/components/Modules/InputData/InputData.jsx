@@ -3,7 +3,7 @@ import './InputData.scss';
 
 const InputData = () => {
   const addTaskBtn = 'Add';
-  const { taskNameRef, cycleRef, errors, handleSubmit } = useInputData();
+  const { taskNameRef, estimateCycleRef, errors, handleSubmit } = useInputData();
 
   return (
     <div className={`input__wrapper`}>
@@ -15,11 +15,13 @@ const InputData = () => {
           required
           className="input__round"
           type="number"
-          ref={cycleRef}
-          placeholder="Enter cycle"
+          ref={estimateCycleRef}
+          placeholder="Enter estimateCycle"
           min={1}
         />
-        {errors.cycle && <span className="input__cycleError">{errors.cycle}</span>}
+        {errors.estimateCycle && (
+          <span className="input__estimateCycleError">{errors.estimateCycle}</span>
+        )}
 
         <input
           required

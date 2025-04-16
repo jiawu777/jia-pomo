@@ -9,7 +9,7 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import legacy from '@vitejs/plugin-legacy';
 
 const https = () => {
-  const useHttps = (process.env.npm_lifecycle_event || '').includes(':https');
+  const useHttps = (process.env.npm_lifeestimateCycle_event || '').includes(':https');
   const keyPem = `${__dirname}/localhost-key.pem`;
   const certPem = `${__dirname}/localhost.pem`;
   if (!useHttps) return {};

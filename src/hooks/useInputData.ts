@@ -4,25 +4,26 @@ import { addTaskAtom } from '@/atoms/taskAtoms';
 
 interface Errors {
   task?: string;
-  cycle?: string;
+  estimateCycle?: string;
 }
 
 const useInputData = () => {
   const taskNameRef = useRef<HTMLInputElement>(null);
-  const cycleRef = useRef<HTMLInputElement>(null);
+  const estimateCycleRef = useRef<HTMLInputElement>(null);
   const [errors, setErrors] = useState<Errors>({});
   const addTask = useSetAtom(addTaskAtom);
   const defaultStatus = {
-    cycle: 1,
+    estimateCycle: 1,
     task: 'Time to focus!',
   };
 
   const validate = (): Errors => {
     const newErrors: Errors = {};
     const task = taskNameRef.current?.value.trim();
-    const cycle = Number(cycleRef.current?.value);
+    const estimateCycle = Number(estimateCycleRef.current?.value);
     if (!task) newErrors.task = '請輸入任務名稱';
-    if (!cycle || isNaN(cycle)) newErrors.cycle = '請輸入正確的循環數(至少1)';
+    if (!estimateCycle || isNaN(estimateCycle))
+      newErrors.estimateCycle = '請輸入正確的循環數(至少1)';
 
     return newErrors;
   };
@@ -40,7 +41,7 @@ const useInputData = () => {
     const newTask = {
       id: Date.now(),
       taskName: taskNameRef.current!.value.trim(),
-      cycle: Number(cycleRef.current!.value),
+      estimateCycle: Number(estimateCycleRef.current!.value),
       completed: false,
     };
 
@@ -49,14 +50,15 @@ const useInputData = () => {
 
     // reset value
     if (taskNameRef.current) taskNameRef.current.value = defaultStatus.task;
-    if (cycleRef.current) cycleRef.current.value = defaultStatus.cycle.toString();
+    if (estimateCycleRef.current)
+      estimateCycleRef.current.value = defaultStatus.estimateCycle.toString();
 
     setErrors({});
   };
 
   return {
     taskNameRef,
-    cycleRef,
+    estimateCycleRef,
     errors,
     handleSubmit,
   };
