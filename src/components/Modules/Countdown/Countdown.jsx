@@ -1,5 +1,5 @@
 import { useAtomValue } from 'jotai';
-import { currentTaskAtom, DEFAULT_BREAKTEXT, timerStateAtom } from '@/atoms/taskAtoms';
+import { currentTaskAtom, DEFAULT_BREAKTEXT, timerStateAtom, isRunning } from '@/atoms/taskAtoms';
 import { useTimer } from '@/hooks/useTimer';
 import './Countdown.scss';
 
@@ -14,40 +14,44 @@ const Countdown = () => {
   const minDisplay = String(Math.floor(timer / 60)).padStart(2, '0');
   const secDisplay = String(Math.floor(timer % 60)).padStart(2, '0');
   const { taskName, estimateCycle, usedCycle } = useAtomValue(currentTaskAtom);
-  const { state } = useAtomValue(timerStateAtom);
+  const state = useAtomValue(timerStateAtom);
+  const displayText = state === 'work' ? taskName : DEFAULT_BREAKTEXT;
+  const runningStatus = useAtomValue(isRunning);
 
   return (
-    <div className="countdown__wrapper">
-      <div className="countdown__display">
+    <div className={`display__wrapper ${runningStatus ? 'display__wrapper--grow' : ''}`}>
+      <div className="countdown__wrapper">
         <h1 className="countdown__timer">
           {minDisplay}:{secDisplay}
         </h1>
-        <h1 className="countdown__currentTask">{taskName}</h1>
-        <h1 className="countdown__currentestimateCycle">
+      </div>
+      <div className="task__wrapper">
+        <h1 className="task__currentTask">{displayText}</h1>
+        <h1 className={`task__currentCycle ${state === 'work' ? '' : 'task__currentCycle--hide'}`}>
           {usedCycle}/{estimateCycle}
         </h1>
-        <div className="countdown__btn">
-          <button
-            className={`btn__toggleTimer ${
-              running ? 'btn__toggleTimer--off' : 'btn__toggleTimer--on'
-            }`}
-            onClick={toggleTimer}
-          >
-            {running ? TimerSwitch.off : TimerSwitch.on}
-          </button>
-          <button
-            className={`btn__reset`}
-            onClick={resetTimer}
-          >
-            {TimerSwitch.reset}
-          </button>
-          <button
-            className={`btn__skip`}
-            onClick={skipTimer}
-          >
-            {TimerSwitch.skip}
-          </button>
-        </div>
+      </div>
+      <div className="btn__wrapper">
+        <button
+          className={`btn btn__toggleTimer ${
+            running ? 'btn__toggleTimer--off' : 'btn__toggleTimer--on'
+          }`}
+          onClick={toggleTimer}
+        >
+          {running ? TimerSwitch.off : TimerSwitch.on}
+        </button>
+        <button
+          className={`btn btn__reset ${running ? '' : 'btn__reset--hide'}`}
+          onClick={resetTimer}
+        >
+          {TimerSwitch.reset}
+        </button>
+        <button
+          className={`btn btn__skip ${running ? '' : 'btn__skip--hide'}`}
+          onClick={skipTimer}
+        >
+          {TimerSwitch.skip}
+        </button>
       </div>
     </div>
   );

@@ -1,6 +1,12 @@
 import { useRef, useEffect } from 'react';
 import { useAtom, useSetAtom } from 'jotai';
-import { isRunning, timeLeftAtom, DEFAULT_BREAKTIME, DEFAULT_WORKTIME } from '@/atoms/taskAtoms';
+import {
+  isRunning,
+  timeLeftAtom,
+  addUsedCycleAtom,
+  DEFAULT_BREAKTIME,
+  DEFAULT_WORKTIME,
+} from '@/atoms/taskAtoms';
 import { useCycle } from '@/hooks/useStatus';
 
 const useTimer = () => {
@@ -8,6 +14,7 @@ const useTimer = () => {
   const [timer, setTimer] = useAtom(timeLeftAtom);
   const [running, setRunning] = useAtom(isRunning);
   const { state, switchState } = useCycle();
+  const addUsedCycle = useSetAtom(addUsedCycleAtom);
 
   // 倒數計時器
   useEffect(() => {
@@ -17,6 +24,7 @@ const useTimer = () => {
         setTimer((prev: number) => {
           if (prev <= 0) {
             clearInterval(timerRef.current!);
+            addUsedCycle();
             setRunning(false);
             switchState();
             return 0;

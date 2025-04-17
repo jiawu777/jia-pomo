@@ -1,4 +1,6 @@
 import { use100vh } from 'react-div-100vh';
+import { useAtomValue } from 'jotai';
+import { timerStateAtom } from '@/atoms/taskAtoms';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import './Layout.scss';
@@ -41,8 +43,15 @@ const LayoutNavBar = (props: IProps) => {
 };
 
 const LayoutMain = (props: IProps) => {
+  const state = useAtomValue(timerStateAtom);
   const { children } = props;
-  return <main className="layout__main">{children}</main>;
+  return (
+    <main
+      className={`layout__main ${state === 'work' ? 'layout__main--work' : 'layout__main--break'}`}
+    >
+      {children}
+    </main>
+  );
 };
 
 const LayoutFooter = () => {

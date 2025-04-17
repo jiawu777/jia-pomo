@@ -27,6 +27,13 @@
     width: 100%;
     flex-grow: 1;
     background-color: green;
+    &--work {
+      background-color: $colorRed;
+    }
+
+    &--break {
+      background-color: $colorOrange;
+    }
   }
 
   &__footer {

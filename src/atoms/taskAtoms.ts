@@ -1,6 +1,7 @@
-import { atom, useSetAtom } from 'jotai';
+import { atom } from 'jotai';
+import { z } from 'zod';
 
-// type
+type UserInfo = z.infer<typeof UserInfoSchema>;
 type Task = {
   id: number;
   taskName: string;
@@ -9,17 +10,25 @@ type Task = {
   completed: boolean;
 };
 
-type UserInfo = {
-  tasks: Task[];
-  currentTaskId: number;
-};
+const TaskSchema = z.object({
+  id: z.number(),
+  taskName: z.string(),
+  estimateCycle: z.number(),
+  usedCycle: z.number(),
+  completed: z.boolean(),
+});
+
+const UserInfoSchema = z.object({
+  tasks: z.array(TaskSchema),
+  currentTaskId: z.number(),
+});
 
 // configure
 const STORAGE_KEY = 'userInfo';
 const DEFAULT_TASK = 'Time to focus!';
 const DEFAULT_estimateCycle = 1;
-const DEFAULT_WORKTIME = 10;
-const DEFAULT_BREAKTIME = 5;
+const DEFAULT_WORKTIME = 25 * 60;
+const DEFAULT_BREAKTIME = 5 * 60;
 const DEFAULT_BREAKTEXT = 'Break time!';
 
 // default
@@ -37,8 +46,12 @@ const timeLeftAtom = atom(DEFAULT_WORKTIME);
 const getUserInfo = (): UserInfo => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : defaultUserInfo;
-  } catch {
+    if (!stored) return defaultUserInfo;
+    const parsedData = JSON.parse(stored);
+    return UserInfoSchema.parse(parsedData);
+  } catch (e) {
+    console.warn('Invalid user info in localStorage, resetting...', e);
+    localStorage.removeItem(STORAGE_KEY);
     return defaultUserInfo;
   }
 };
@@ -98,7 +111,6 @@ const addUsedCycleAtom = atom(null, (get, set) => {
   set(userInfoAtom, updatedUserInfo);
 });
 
-export type { Task, UserInfo };
 export {
   timerStateAtom,
   isRunning,

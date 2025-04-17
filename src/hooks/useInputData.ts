@@ -12,10 +12,6 @@ const useInputData = () => {
   const estimateCycleRef = useRef<HTMLInputElement>(null);
   const [errors, setErrors] = useState<Errors>({});
   const addTask = useSetAtom(addTaskAtom);
-  const defaultStatus = {
-    estimateCycle: 1,
-    task: 'Time to focus!',
-  };
 
   const validate = (): Errors => {
     const newErrors: Errors = {};
@@ -49,9 +45,8 @@ const useInputData = () => {
     addTask(newTask);
 
     // reset value
-    if (taskNameRef.current) taskNameRef.current.value = defaultStatus.task;
-    if (estimateCycleRef.current)
-      estimateCycleRef.current.value = defaultStatus.estimateCycle.toString();
+    if (taskNameRef.current) taskNameRef.current.value = '';
+    if (estimateCycleRef.current) estimateCycleRef.current.value = '';
 
     setErrors({});
   };
