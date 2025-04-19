@@ -4,9 +4,9 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     gap: 1rem;
-    height: 60%;
+    height: 55%;
     &--grow {
       height: 100%;
       justify-content: center;
@@ -20,7 +20,7 @@
   &__wrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     flex-flow: column wrap;
   }
@@ -35,11 +35,15 @@
   }
 
   &__timer {
+    max-width: 100%;
     font-size: 15rem;
     font-weight: bold;
     color: $colorWhite;
-    @include phone {
+    @include pad {
       font-size: 10rem;
+    }
+    @include phone {
+      font-size: 8rem;
     }
   }
 }
@@ -51,6 +55,10 @@
     justify-content: center;
     gap: 3rem;
     color: $colorWhite;
+    @include pad {
+      flex-flow: column;
+      gap: 1rem;
+    }
   }
 
   &__currentTask {
@@ -59,8 +67,8 @@
     white-space: pre-wrap;
     overflow: hidden;
     font-weight: bold;
-    @include phone {
-      font-size: 4rem;
+    @include pad {
+      font-size: 3rem;
     }
   }
 
@@ -70,6 +78,9 @@
     font-weight: bold;
     &--hide {
       display: none;
+    }
+    @include pad {
+      font-size: 3rem;
     }
   }
 }
@@ -88,6 +99,10 @@
     flex-flow: row nowrap;
     gap: 1rem;
     justify-content: center;
+    align-items: center;
+    @include phone {
+      flex-flow: column nowrap;
+    }
   }
 
   &__toggleTimer {

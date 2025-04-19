@@ -1,4 +1,4 @@
-import { Layout, LayoutHeader, LayoutMain, LayoutFooter } from '@/layout/Layout';
+import { Layout, LayoutMain } from '@/layout/Layout';
 import Countdown from '@/components/Modules/Countdown';
 import InputData from '@/components/Modules/InputData';
 

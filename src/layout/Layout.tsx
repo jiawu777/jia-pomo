@@ -1,8 +1,6 @@
 import { use100vh } from 'react-div-100vh';
 import { useAtomValue } from 'jotai';
 import { timerStateAtom } from '@/atoms/taskAtoms';
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
 import './Layout.scss';
 
 interface IProps {
@@ -21,14 +19,6 @@ const Layout = (props: IProps) => {
         {children}
       </section>
     </section>
-  );
-};
-
-const LayoutHeader = () => {
-  return (
-    <header className="layout__header">
-      <Header />
-    </header>
   );
 };
 
@@ -54,12 +44,4 @@ const LayoutMain = (props: IProps) => {
   );
 };
 
-const LayoutFooter = () => {
-  return (
-    <footer className="layout__footer">
-      <Footer />
-    </footer>
-  );
-};
-
-export { Layout, LayoutHeader, LayoutPageHeader, LayoutNavBar, LayoutMain, LayoutFooter };
+export { Layout, LayoutPageHeader, LayoutNavBar, LayoutMain };
