@@ -26,7 +26,8 @@ const DROP_CONSOLE_MODES = ['beta', 'demo']; // ANCHOR 設定清除 console 的�
 const ENABLE_V_CONSOLE_MODES = ['dev']; // ANCHOR 設定開啟 vConsole 的環境
 
 export default defineConfig(({ mode }) => {
-  const basePath = mode === 'development' ? '/' : `/frontend/${mode}/wap/`;
+  // const basePath = mode === 'development' ? '/' : `/frontend/${mode}/wap/`;
+  const basePath = './';
   return {
     base: basePath,
     server: {
@@ -91,7 +92,7 @@ export default defineConfig(({ mode }) => {
           start_url: '/',
           name: 'jia-practice',
           short_name: 'jia-practice',
-          description: '稳定安全 实时到帐',
+          description: '穩定安全 即時到帳',
           theme_color: '#5488f8',
           icons: [
             {
@@ -135,7 +136,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: 'build',
+      outDir: 'dist',
     },
     esbuild: {
       drop: DROP_CONSOLE_MODES.includes(mode) ? ['console', 'debugger'] : [],
