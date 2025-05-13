@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "dev:https": "yarn cert && vite --host",
     "cert": "mkcert -key-file  localhost-key.pem -cert-file localhost.pem localhost $(ipconfig getifaddr en0)",
-    "build":"tsc && vite build",
+    "build": "tsc && vite build",
     "build-dev": "tsc && vite build --mode dev",
     "build-alpha": "tsc && vite build --mode alpha",
     "build-beta": "tsc && vite build --mode beta",
@@ -49,6 +49,8 @@
     "zod": "3.20.2"
   },
   "devDependencies": {
+    "@types/hoist-non-react-statics": "^3.3.6",
+    "@types/node": "^22.15.17",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/ua-parser-js": "^0.7.36",
@@ -67,13 +69,17 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.2",
+    "postcss": "^8.5.3",
     "prettier": "2.8.7",
+    "terser": "^5.39.0",
     "typescript": "^5.7.2",
     "vite": "^4.2.0",
     "vite-plugin-dynamic-import": "^1.2.7",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-pwa": "^0.14.7",
-    "vite-tsconfig-paths": "^4.2.0"
+    "vite-tsconfig-paths": "^4.2.0",
+    "workbox-build": "^7.3.0",
+    "workbox-window": "^7.3.0"
   },
   "lint-staged": {
     "*.+(ts|tsx|js|jsx)": [

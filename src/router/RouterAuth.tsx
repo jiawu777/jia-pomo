@@ -78,7 +78,7 @@ const RouterAuth = () => {
     return (
       <Navigate
         replace
-        to={`${ROUTES.About}`}
+        to={`${ROUTES.Countdown}`}
         state={state}
       />
     );
