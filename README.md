@@ -57,4 +57,4 @@ npm install
 
 ### 📜 手機模式休息頁面
 
-![Breaktime](./src/assets/images/screenshots/break-phone.png)
+![Breaktime](./src/assets/images/screenshots/breaktime-phone.png)
