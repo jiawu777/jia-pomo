@@ -4,6 +4,11 @@
 
 ---
 
+## Demo
+
+[Demo](pomo-demo.gif)
+[完整影片連結](https://youtu.be/pZW_d4ggC6I)
+
 ## 🚀 安裝方式
 
 ```bash
